@@ -9,12 +9,12 @@ export default function Contact() {
     <section id="contact" className="mx-auto max-w-4xl px-6 py-16">
       <Reveal>
         <h2 className="text-2xl font-semibold tracking-tight">Contact</h2>
-        <p className="mt-4 max-w-2xl text-muted">
+        <p className="mt-4 max-w-2xl text-base text-muted">
           Want to get in touch? Send an email or find me on the links below.
         </p>
       </Reveal>
 
-      <Reveal delay={100}>
+      <Reveal delay={80}>
         <form
           action={`mailto:${EMAIL}`}
           method="post"
@@ -35,7 +35,7 @@ export default function Contact() {
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium">
-              Your Email
+              Your email
             </label>
             <input
               id="email"
@@ -59,14 +59,14 @@ export default function Contact() {
           </div>
           <button
             type="submit"
-            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-black transition-all hover:scale-105 hover:shadow-[0_0_24px_rgba(45,212,191,0.55)]"
+            className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:opacity-90"
           >
-            Send Message
+            Send message
           </button>
         </form>
       </Reveal>
 
-      <Reveal delay={150}>
+      <Reveal delay={140}>
         <div className="mt-10 flex flex-wrap gap-6 text-sm">
           <a href={`mailto:${EMAIL}`} className="text-muted transition-colors hover:text-accent">
             {EMAIL}

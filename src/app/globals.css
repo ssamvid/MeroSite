@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
+/* Warm, minimal palette. Light is default; [data-theme="dark"] overrides. */
 :root {
-  --background: #0a0a0c;
-  --foreground: #e7e9ea;
-  --muted: #9099a3;
-  --accent: #2dd4bf;
-  --accent-2: #818cf8;
-  --card: #131417;
-  --border: #24262b;
+  --background: #f7f3ec;
+  --foreground: #2a231d;
+  --muted: #7a6f63;
+  --accent: #c1622d;
+  --card: #efe8dd;
+  --border: #e2d9c9;
+}
+
+[data-theme="dark"] {
+  --background: #17140f;
+  --foreground: #f3ece1;
+  --muted: #a89c8c;
+  --accent: #e08148;
+  --card: #1f1b15;
+  --border: #2c261d;
 }
 
 @theme inline {
@@ -15,11 +24,11 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
   --color-card: var(--card);
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo-black);
 }
 
 html {
@@ -29,13 +38,15 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Scroll reveal */
+/* Scroll reveal — subtle, short, cheap (opacity + small translate only) */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.is-visible {
@@ -43,56 +54,7 @@ body {
   transform: translateY(0);
 }
 
-/* Gradient accent text */
-.gradient-text {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Floating gradient blobs */
-@keyframes float-slow {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, -30px) scale(1.08); }
-}
-
-@keyframes float-slower {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-30px, 20px) scale(1.05); }
-}
-
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-.blob-accent {
-  background: var(--accent);
-  animation: float-slow 12s ease-in-out infinite;
-}
-
-.blob-accent-2 {
-  background: var(--accent-2);
-  animation: float-slower 14s ease-in-out infinite;
-}
-
-/* Card hover glow */
-.glow-card {
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glow-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent),
-    0 12px 32px -12px color-mix(in srgb, var(--accent) 45%, transparent);
-}
-
-/* Underline hover for nav links */
+/* Nav link underline on hover */
 .nav-link {
   position: relative;
 }
@@ -105,11 +67,53 @@ body {
   width: 0%;
   height: 1px;
   background: var(--accent);
-  transition: width 0.25s ease;
+  transition: width 0.2s ease;
 }
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Simple card hover — border color only, no transform/glow */
+.card {
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+/* Theme toggle label swap — pure CSS, no JS state/effect needed */
+.theme-label-dark {
+  display: none;
+}
+
+[data-theme="dark"] .theme-label-light {
+  display: none;
+}
+
+[data-theme="dark"] .theme-label-dark {
+  display: inline;
+}
+
+/* Marquee — single GPU-only transform loop, pauses on hover */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-slow {
+  animation-duration: 50s;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -118,8 +122,7 @@ body {
     transform: none;
     transition: none;
   }
-  .blob-accent,
-  .blob-accent-2 {
+  .marquee {
     animation: none;
   }
 }

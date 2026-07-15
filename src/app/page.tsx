@@ -1,10 +1,8 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import WhyHireMe from "@/components/WhyHireMe";
 import Projects from "@/components/Projects";
+import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -14,11 +12,9 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
-        <About />
         <Skills />
-        <Experience />
-        <WhyHireMe />
         <Projects />
+        <About />
         <Contact />
       </main>
       <Footer />
