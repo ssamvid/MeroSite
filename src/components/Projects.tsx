@@ -40,7 +40,7 @@ export default function Projects() {
   return (
     <section id="work" className="mx-auto max-w-4xl px-6 py-16">
       <Reveal>
-        <h2 className="text-2xl font-semibold tracking-tight">Work</h2>
+        <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">Work</h2>
       </Reveal>
 
       <div className="mt-8 space-y-6">
