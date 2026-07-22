@@ -19,9 +19,9 @@ const archivoBlack = Archivo_Black({
 });
 
 export const metadata: Metadata = {
-  title: "Samvid Shrestha — Backend Developer",
+  title: "Samvid Shrestha",
   description:
-    "Portfolio of Samvid Shrestha, backend developer. Experience, skills, and projects.",
+    "Portfolio of Samvid Shrestha. Experience, skills, and projects.",
 };
 
 export default function RootLayout({
