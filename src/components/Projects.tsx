@@ -11,6 +11,7 @@ const projects = [
     tags: ["Full Stack", "Nutrition Tracking", "Data Visualization", "AI Assisted Development"],
     link: "https://fitness-bcce3.web.app",
     linkLabel: "View Live App",
+    repoLink: undefined,
   },
   {
     number: "02",
@@ -22,6 +23,7 @@ const projects = [
     tags: ["Full Stack", "Accounting", "Bill Scanning", "Nonprofit"],
     link: undefined,
     linkLabel: "Repo coming soon",
+    repoLink: undefined,
   },
   {
     number: "03",
@@ -33,6 +35,19 @@ const projects = [
     tags: ["Backend", "Database", "Authentication", "OTP Integration"],
     link: "https://github.com/ssamvid",
     linkLabel: "View on GitHub",
+    repoLink: undefined,
+  },
+  {
+    number: "04",
+    title: "NoteTaker",
+    context: "Personal project",
+    role: "Solo Developer",
+    description:
+      "A note-taking app for saving, searching, grouping, and pinning notes. Built for quick capture and easy retrieval, with organization features that keep notes structured as they pile up.",
+    tags: ["Full Stack", "Search", "Organization"],
+    link: "https://silver-mermaid-8e8506.netlify.app",
+    linkLabel: "View Live App",
+    repoLink: "https://github.com/ssamvid/NoteTaker",
   },
 ];
 
@@ -70,20 +85,32 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  {project.link ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-5 inline-block text-sm font-medium text-accent hover:underline"
-                    >
-                      {project.linkLabel} →
-                    </a>
-                  ) : (
-                    <span className="mt-5 inline-block text-sm font-medium text-muted">
-                      {project.linkLabel}
-                    </span>
-                  )}
+                  <div className="mt-5 flex flex-wrap items-center gap-4">
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-sm font-medium text-accent hover:underline"
+                      >
+                        {project.linkLabel} →
+                      </a>
+                    ) : (
+                      <span className="inline-block text-sm font-medium text-muted">
+                        {project.linkLabel}
+                      </span>
+                    )}
+                    {project.repoLink ? (
+                      <a
+                        href={project.repoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block text-sm font-medium text-accent hover:underline"
+                      >
+                        View on GitHub →
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
